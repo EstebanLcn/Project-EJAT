@@ -8,15 +8,17 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D theRB;
     public float jumpForce;
     private bool isGrounded;
-
+    private SpriteRenderer theSR;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
 
     private bool canDoubleJump;
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        theSR = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -46,5 +48,14 @@ public class PlayerController : MonoBehaviour
             }
          }
     }
+        if(theRB.velocity.x < 0)
+        {
+            theSR.flipX = true;
+        } else if(theRB.velocity.x > 0)
+        {
+            theSR.flipX = false;
+        }
+        anim.SetFloat("MoveSpeed", Mathf.Abs(theRB.velocity.x));
+        anim.SetBool("isGrounded", isGrounded); 
     }
     }
