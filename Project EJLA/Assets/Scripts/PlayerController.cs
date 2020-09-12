@@ -12,6 +12,13 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
 
+    public ParticleSystem footsteps;
+    private ParticleSystem.EmissionModule footEmission;
+
+    //public ParticleSystem impactEffect;
+   // private bool wasOnGround;
+    public Transform camTarget;
+    public float aheadAmount, aheadSpeed;
     private bool canDoubleJump;
     private Animator anim;
     // Start is called before the first frame update
@@ -19,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         theSR = GetComponent<SpriteRenderer>();
+        footEmission = footsteps.emission;
     }
 
     // Update is called once per frame
@@ -48,6 +56,10 @@ public class PlayerController : MonoBehaviour
             }
          }
     }
+        if(Input.GetButtonUp("Jump") && theRB.velocity.y > 0)
+        {
+            theRB.velocity = new Vector2(theRB.velocity.x, theRB.velocity.y * .5f);
+        }
         if(theRB.velocity.x < 0)
         {
             theSR.flipX = true;
@@ -55,6 +67,28 @@ public class PlayerController : MonoBehaviour
         {
             theSR.flipX = false;
         }
+
+        if(Input.GetAxisRaw("Horizontal") != 0)
+        {
+            camTarget.localPosition = new Vector3(Mathf.Lerp(camTarget.localPosition.x, aheadAmount * Input.GetAxisRaw("Horizontal"), aheadSpeed * Time.deltaTime), camTarget.localPosition.y, camTarget.localPosition.z);
+        }
+
+        if(Input.GetAxisRaw("Horizontal") !=0 && isGrounded)
+        {
+            footEmission.rateOverTime = 35f;
+        }else
+        {
+            footEmission.rateOverTime = 0f;
+        }
+     /*   if(!wasOnGround && isGrounded)
+        {
+            impactEffect.gameObject.SetActive(true);
+            impactEffect.Stop();
+            impactEffect.transform.position = footsteps.transform.position;
+            impactEffect.Play();
+        }
+        wasOnGround = isGrounded;
+*/
         anim.SetFloat("MoveSpeed", Mathf.Abs(theRB.velocity.x));
         anim.SetBool("isGrounded", isGrounded); 
     }
