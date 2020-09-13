@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     public float moveSpeed;
     public Rigidbody2D theRB;
     public float jumpForce;
@@ -21,7 +22,12 @@ public class PlayerController : MonoBehaviour
     public float aheadAmount, aheadSpeed;
     private bool canDoubleJump;
     private Animator anim;
+    public float KnockBackLenght, KnockBackForce;   
+    private float KnockBackCounter;
     // Start is called before the first frame update
+    private void Awake() {
+        instance = this;
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -32,6 +38,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(KnockBackCounter <=0)
+        {
         theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
         
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
@@ -89,7 +97,25 @@ public class PlayerController : MonoBehaviour
         }
         wasOnGround = isGrounded;
 */
+        }else
+        {
+            KnockBackCounter -= Time.deltaTime;
+            if(!theSR.flipX)
+            {
+                theRB.velocity = new Vector2(-KnockBackForce,theRB.velocity.y);
+            }else
+            {
+               theRB.velocity = new Vector2(KnockBackForce,theRB.velocity.y);
+
+            }
+        }
         anim.SetFloat("MoveSpeed", Mathf.Abs(theRB.velocity.x));
         anim.SetBool("isGrounded", isGrounded); 
+    }
+
+    public void KnocBack()
+    {
+        KnockBackCounter = KnockBackLenght;
+        theRB.velocity = new Vector2(0f,KnockBackForce);
     }
     }

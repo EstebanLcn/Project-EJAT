@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6215138518050297491}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cam Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6215138518882224066}
   - component: {fileID: 6215138518882224068}
   - component: {fileID: 6215138518882224067}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DustFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4795,7 +4795,7 @@ GameObject:
   - component: {fileID: 6215138518916776645}
   - component: {fileID: 6215138518916776647}
   - component: {fileID: 6215138518916776646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ImpactFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9547,7 +9547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6215138519110188708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9582,9 +9582,10 @@ GameObject:
   - component: {fileID: 6215138519537835761}
   - component: {fileID: 6215138519537835760}
   - component: {fileID: 6215138519537835765}
-  m_Layer: 0
+  - component: {fileID: 1315231464}
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9709,7 +9710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   theRB: {fileID: 6215138519537835761}
-  jumpForce: 12
+  jumpForce: 10.5
   groundCheckPoint: {fileID: 6215138519110188708}
   whatIsGround:
     serializedVersion: 2
@@ -9737,3 +9738,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1315231464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215138519537835775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c722a157afbb54593376575e071098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 3
