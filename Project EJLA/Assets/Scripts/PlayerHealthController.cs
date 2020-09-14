@@ -6,6 +6,7 @@ public class PlayerHealthController : MonoBehaviour
 {   
     public static PlayerHealthController instance;
     public int currentHealth, maxHealth;
+    public GameObject deathEffect;
     public float invicibleLenght;
     private float invicibleCounter;
 
@@ -43,6 +44,7 @@ public class PlayerHealthController : MonoBehaviour
         if(currentHealth <= 0)
         {
             currentHealth =0;
+            Instantiate(deathEffect, transform.position, transform.rotation);
             //gameObject.SetActive(false);
             LevelManager.instance.RespawnPlayer();
         }else
@@ -53,5 +55,14 @@ public class PlayerHealthController : MonoBehaviour
         }
         UiController.instance.UpdateHealthDisplay();
     }
+    }
+    public void HealPlayer()
+    {
+        currentHealth++;
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        UiController.instance.UpdateHealthDisplay();
     }
 }
