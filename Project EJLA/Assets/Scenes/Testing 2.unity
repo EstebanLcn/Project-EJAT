@@ -30477,7 +30477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7806cdaf7dabe499347bdd5928d25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaitToRespawn: 3
+  WaitToRespawn: 2.9
   GemsCollected: 0
 --- !u!4 &2053444262
 Transform:
