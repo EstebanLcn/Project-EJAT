@@ -7,6 +7,10 @@ public class SPlayerController : MonoBehaviour
     public float moveSpeed;
     public Rigidbody2D theRB;
     public Transform bottomLeftLimit, topRightLimit;
+    public Transform shotPoint;
+    public GameObject shot;
+    public float timeBetweenShots = .1f;
+    private float ShotsCounter; 
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +22,21 @@ public class SPlayerController : MonoBehaviour
     {
             theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.position.x, topRightLimit.position.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.position.y, topRightLimit.position.y), transform.position.z);
+            
+            if(Input.GetButtonDown("Fire1"))
+            {
+                Instantiate(shot, shotPoint.position, shotPoint.rotation);
+                ShotsCounter = timeBetweenShots;
+            }
+            if(Input.GetButton("Fire1"))
+            {
+                ShotsCounter -= Time.deltaTime;
+                if(ShotsCounter <=0)
+                {
+                  Instantiate(shot, shotPoint.position, shotPoint.rotation);
+                  ShotsCounter = timeBetweenShots;
+                }
+
+            }
     }
 }
