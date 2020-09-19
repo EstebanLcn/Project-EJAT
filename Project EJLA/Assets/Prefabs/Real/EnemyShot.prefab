@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 717445786218632858}
   - component: {fileID: 717445786218632861}
   - component: {fileID: 1304639636}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4207d41cf9c3254bb5f65e6e146246d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotspeed: 6
+  shotSpeed: 7
   impactEffect: {fileID: 2198544368297334643, guid: 6e7a2765a7254714587c89cba8301918,
     type: 3}
 --- !u!82 &1304639636

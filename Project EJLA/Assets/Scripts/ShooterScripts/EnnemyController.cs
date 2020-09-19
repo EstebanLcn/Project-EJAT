@@ -15,6 +15,8 @@ public class EnnemyController : MonoBehaviour
          public bool canShot;
          public bool allowShoot;
     private float ShotsCounter; 
+    public int currentHealth;
+    public GameObject deathEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,14 @@ public class EnnemyController : MonoBehaviour
        }
 
 
+    }
+    public void HurtEnnemi(){
+        currentHealth --;
+        if(currentHealth <= 0)
+         {
+             Destroy(gameObject);
+             Instantiate(deathEffect, transform.position, transform.rotation);
+         }
     }
     private void OnBecameInvisible() {
         Destroy(gameObject);

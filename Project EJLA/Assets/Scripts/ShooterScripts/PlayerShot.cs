@@ -28,6 +28,10 @@ public class PlayerShot : MonoBehaviour
             Instantiate(particleExplosion, other.transform.position, other.transform.rotation);
             Destroy(other.gameObject);
         }
+        if(other.tag == "Ennemy")
+        {
+            other.GetComponent<EnnemyController>().HurtEnnemi();
+        }
         Destroy(this.gameObject);
 
     }

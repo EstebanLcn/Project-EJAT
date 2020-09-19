@@ -107,6 +107,9 @@ MonoBehaviour:
   timeBetweenShots: 0.5
   canShot: 1
   allowShoot: 0
+  currentHealth: 3
+  deathEffect: {fileID: 7915955638878331786, guid: f1493296ab0f4a046ba22dc84607e776,
+    type: 3}
 --- !u!61 &2383003945877438212
 BoxCollider2D:
   m_ObjectHideFlags: 0
