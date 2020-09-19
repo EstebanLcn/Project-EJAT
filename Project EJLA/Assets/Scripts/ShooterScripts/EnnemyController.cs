@@ -17,6 +17,7 @@ public class EnnemyController : MonoBehaviour
     private float ShotsCounter; 
     public int currentHealth;
     public GameObject deathEffect;
+    public int scoreValue = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,7 @@ public class EnnemyController : MonoBehaviour
         currentHealth --;
         if(currentHealth <= 0)
          {
+             GameManager.instance.AddScore(scoreValue);
              Destroy(gameObject);
              Instantiate(deathEffect, transform.position, transform.rotation);
          }

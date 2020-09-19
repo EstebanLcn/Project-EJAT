@@ -20,6 +20,8 @@ public class HealthManager : MonoBehaviour
         void Start()
     {
         currentHealth = maxHealth;
+            UiManager.instance.healthBar.maxValue = maxHealth;
+            UiManager.instance.healthBar.value = currentHealth;
     }
 
     // Update is called once per frame
@@ -41,6 +43,8 @@ public class HealthManager : MonoBehaviour
         {
 
         currentHealth--;
+                    UiManager.instance.healthBar.value = currentHealth;
+
         if(currentHealth <=0)
         {
             Instantiate(deathEffect, transform.position, transform.rotation);
@@ -55,6 +59,8 @@ public class HealthManager : MonoBehaviour
     {
         gameObject.SetActive(true);
         currentHealth = maxHealth;
+        UiManager.instance.healthBar.value = currentHealth;
+
         invicibleCounter = invicibleTime;
         theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, .5f); 
     }
