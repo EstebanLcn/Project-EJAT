@@ -14,6 +14,8 @@ public class EnnemyController : MonoBehaviour
          public float timeBetweenShots = .1f;
          public bool canShot;
          public bool allowShoot;
+         public GameObject[] powerUps;
+         public int dropSuccessRate = 15;
     private float ShotsCounter; 
     public int currentHealth;
     public GameObject deathEffect;
@@ -60,6 +62,16 @@ public class EnnemyController : MonoBehaviour
         if(currentHealth <= 0)
          {
              GameManager.instance.AddScore(scoreValue);
+
+            int randomChance = Random.Range(0,100);
+            if(randomChance <dropSuccessRate)
+            {
+
+           
+            int randomPick = Random.Range(0, powerUps.Length);
+
+            Instantiate(powerUps[randomPick], transform.position, transform.rotation); 
+             }
              Destroy(gameObject);
              Instantiate(deathEffect, transform.position, transform.rotation);
          }

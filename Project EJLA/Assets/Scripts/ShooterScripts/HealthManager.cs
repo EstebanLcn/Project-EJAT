@@ -10,7 +10,9 @@ public class HealthManager : MonoBehaviour
     public float invicibleTime = 2f;
     private float invicibleCounter;
     public SpriteRenderer theSR;
-
+    public int shieldPwr;
+    public int maxSPwr = 2;
+    public GameObject shield;
     public GameObject deathEffect;
     // Start is called before the first frame update
  private void Awake()
@@ -22,6 +24,9 @@ public class HealthManager : MonoBehaviour
         currentHealth = maxHealth;
             UiManager.instance.healthBar.maxValue = maxHealth;
             UiManager.instance.healthBar.value = currentHealth;
+            UiManager.instance.shieldBar.maxValue = maxSPwr;
+            UiManager.instance.shieldBar.value = shieldPwr;
+
     }
 
     // Update is called once per frame
@@ -41,6 +46,17 @@ public class HealthManager : MonoBehaviour
     {
         if(invicibleCounter <=0)
         {
+            if(shield.activeInHierarchy)
+            {
+                shieldPwr --;
+                if(shieldPwr <=0)
+                {
+                    shield.SetActive(false);
+                }
+               UiManager.instance.shieldBar.value = shieldPwr;
+
+            }else
+            {
 
         currentHealth--;
                     UiManager.instance.healthBar.value = currentHealth;
@@ -53,7 +69,9 @@ public class HealthManager : MonoBehaviour
             GameManager.instance.KillPlayer();
             WaveManager.instance.canSpwanWaves = false;
         }
+        SPlayerController.instance.doubleShotActive = false;
     }
+        }
     }
     public void Respawn()
     {
@@ -63,5 +81,14 @@ public class HealthManager : MonoBehaviour
 
         invicibleCounter = invicibleTime;
         theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, .5f); 
+    }
+    public void activateShield()
+    {
+        shield.SetActive(true);
+        shieldPwr = maxSPwr;
+
+            UiManager.instance.shieldBar.value = shieldPwr;
+
+
     }
 }

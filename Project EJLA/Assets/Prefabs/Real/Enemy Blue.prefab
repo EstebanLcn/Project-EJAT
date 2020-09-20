@@ -137,9 +137,14 @@ MonoBehaviour:
   timeBetweenShots: 0.5
   canShot: 1
   allowShoot: 0
+  powerUps:
+  - {fileID: 2611765399507116383, guid: d1deed09745fc564fa018ee09727f166, type: 3}
+  - {fileID: 2907449752826655734, guid: 7b5806b5d1516d24b84d6b1a1099bdde, type: 3}
+  - {fileID: 8790313088273103396, guid: 574ea7671cb326e4da0b0d6f13f99367, type: 3}
   currentHealth: 3
   deathEffect: {fileID: 7915955638878331786, guid: f1493296ab0f4a046ba22dc84607e776,
     type: 3}
+  scoreValue: 100
 --- !u!61 &2368348928706802878
 BoxCollider2D:
   m_ObjectHideFlags: 0
