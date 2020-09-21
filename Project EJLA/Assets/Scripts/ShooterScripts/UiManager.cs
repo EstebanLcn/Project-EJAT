@@ -13,6 +13,12 @@ public class UiManager : MonoBehaviour
               public Text livesText;
                public Slider healthBar, shieldBar;
                 public Text scoreText, highScoreText;
+                public GameObject levelEndScreen;
+                public Text endLevelScore, endCurrentScore;
+                public GameObject highScoreNotice;
+                public GameObject pauseScreen;
+        public string mainMenuName = "MainMenu";
+                
 
     private void Awake() {
         instance = this;
@@ -31,9 +37,15 @@ public class UiManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
     public void QuitMainMenu()
     {
-
+        SceneManager.LoadScene(mainMenuName);
+        Time.timeScale = 1f;
+    }
+    public void Resume()
+    {
+        GameManager.instance.PauseUnpause();
     }
 }

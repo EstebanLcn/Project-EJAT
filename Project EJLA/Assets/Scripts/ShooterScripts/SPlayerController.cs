@@ -18,6 +18,8 @@ public class SPlayerController : MonoBehaviour
     private float boostCounter;
     public bool doubleShotActive;
     public float doubleShotOffset;
+
+    public bool stopMovement;
     // Start is called before the first frame update
     private void Awake() {
         instance = this;
@@ -30,6 +32,8 @@ public class SPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!stopMovement)
+        {
             theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.position.x, topRightLimit.position.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.position.y, topRightLimit.position.y), transform.position.z);
             
@@ -76,7 +80,12 @@ public class SPlayerController : MonoBehaviour
                 }
             }
 
+
+    }else
+    {
+        theRB.velocity = Vector2.zero;
     }
+}
     public void ActivateSpeedBoost()
     {
         boostCounter = boostSpeed;
